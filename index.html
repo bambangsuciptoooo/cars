@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All About Cars — Mini Guide</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#ff6b6b;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,Segoe UI,Arial; margin:0; background:linear-gradient(180deg,var(--bg) 0%, #071025 100%); color:#e6eef8; -webkit-font-smoothing:antialiased}
+    header{padding:2.2rem 1rem; display:flex;align-items:center;justify-content:space-between; gap:1rem}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ffa94d);display:grid;place-items:center;font-weight:700;color:#071025}
+    h1{font-size:1.25rem;margin:0}
+    p.lead{color:var(--muted);margin:.25rem 0 0}
+
+    main{padding:1rem;display:grid;grid-template-columns:1fr 360px;gap:1rem}
+
+    /* left column */
+    .card{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6);}
+
+    .hero{display:flex;gap:1rem;align-items:center}
+    .hero img{width:180px;border-radius:10px;filter:contrast(.98) saturate(1.05)}
+
+    h2{margin:0 0 .5rem}
+    ul{margin:0;padding-left:1.15rem}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+
+    /* right column */
+    aside{position:sticky;top:1rem;height:fit-content}
+    .stats{display:flex;gap:.6rem}
+    .stat{flex:1;background:var(--glass);padding:.75rem;border-radius:10px;text-align:center}
+    .stat h3{margin:0;font-size:1rem}
+    .stat p{color:var(--muted);margin:.25rem 0 0}
+
+    /* interactive car card */
+    .car-card{display:flex;gap:1rem;align-items:center}
+    .car-card img{width:100px;height:64px;object-fit:cover;border-radius:6px}
+
+    /* buttons */
+    .btn{display:inline-block;padding:.5rem .7rem;border-radius:8px;background:linear-gradient(90deg,var(--accent),#ffa94d);color:#071025;text-decoration:none;font-weight:600}
+
+    footer{padding:2rem 1rem;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:900px){main{grid-template-columns:1fr} aside{position:static}}
+
+    /* small animations */
+    .pulse{animation:pulse 3s infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+    /* search */
+    .search{display:flex;gap:.5rem;align-items:center}
+    .search input{flex:1;padding:.5rem .6rem;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:#071827;color:inherit}
+
+    /* simple table */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:.5rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03)}
+    th{color:var(--muted);font-weight:600}
+
+    /* subtle hover */
+    .card:hover{transform:translateY(-2px);transition:transform .18s}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">CAR</div>
+      <div>
+        <h1>All About Cars</h1>
+        <p class="lead">A compact, interactive single-page guide about cars — history, types, tips, and a mini gallery.</p>
+      </div>
+    </div>
+    <nav class="search" aria-label="site search">
+      <input id="q" placeholder="Search topics, e.g. 'EV' or 'engine'" />
+      <button class="btn" onclick="doSearch()">Search</button>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <article class="card hero">
+        <div style="flex:1">
+          <h2>Quick overview</h2>
+          <p>Cars — short for "automobiles" — are wheeled motor vehicles used for transporting people. They evolved from early steam and electric prototypes to modern internal combustion and electric powertrains.</p>
+
+          <h3 style="margin-top:.9rem">Key milestones</h3>
+          <ul>
+            <li>Late 19th century: first petrol-powered cars (Benz, Daimler).</li>
+            <li>Early 20th century: assembly line mass production (Ford Model T).</li>
+            <li>Late 20th — 21st century: electronics, safety systems, and EV revolution.</li>
+          </ul>
+
+          <h3 style="margin-top:.9rem">Common car categories</h3>
+          <ul>
+            <li>Hatchback — compact, practical.</li>
+            <li>Sedan — comfortable 4-door passenger cars.</li>
+            <li>SUV/Crossover — taller ride, more cargo room.</li>
+            <li>Pickup — cargo bed and towing capability.</li>
+            <li>Sports cars — performance-focused.</li>
+            <li>EVs (Electric Vehicles) — battery powered, lower emissions.</li>
+          </ul>
+        </div>
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Car illustration"/>
+      </article>
+
+      <article class="card" style="margin-top:1rem">
+        <h2>How cars work — simplified</h2>
+        <p>At a high level a car needs three things: power source, transmission to deliver power, and wheels to move the vehicle. Below are simplified diagrams and quick notes.</p>
+
+        <table>
+          <thead>
+            <tr><th>Subsystem</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Engine / Motor</td><td>Produces rotational power (torque)</td></tr>
+            <tr><td>Transmission</td><td>Matches engine speed to wheel speed</td></tr>
+            <tr><td>Chassis & Suspension</td><td>Supports vehicle and smooths ride</td></tr>
+            <tr><td>Brakes</td><td>Slow / stop the car</td></tr>
+            <tr><td>Electrical</td><td>Controls, infotainment, safety systems</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card" style="margin-top:1rem">
+        <h2>Tips for buyers</h2>
+        <ul>
+          <li>Define needs: passengers, cargo, city vs highway, towing.</li>
+          <li>Compare total cost of ownership (fuel, maintenance, insurance).</li>
+          <li>Test drive multiple models — evaluate visibility, comfort.</li>
+          <li>Check safety ratings and warranty coverage.</li>
+          <li>For used cars: verify service history and get a pre-purchase inspection.</li>
+        </ul>
+      </article>
+
+      <article class="card" style="margin-top:1rem">
+        <h2>Mini gallery</h2>
+        <div class="gallery" id="gallery">
+          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 1"/>
+          <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 2"/>
+          <img src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7f5e?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 3"/>
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 4"/>
+          <img src="https://images.unsplash.com/photo-1471478339259-0b1f7f8b70f8?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 5"/>
+          <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Car 6"/>
+        </div>
+      </article>
+    </section>
+
+    <aside>
+      <div class="card stats pulse">
+        <div class="stats">
+          <div class="stat"><h3 id="stat-ev">25%</h3><p>Market EV share (example)</p></div>
+          <div class="stat"><h3 id="stat-safety">5⭐</h3><p>Top safety rating</p></div>
+          <div class="stat"><h3 id="stat-range">400 km</h3><p>EV range example</p></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1rem">
+        <h2>Compare quick</h2>
+        <div class="car-card">
+          <img src="https://images.unsplash.com/photo-1517949908114-5f5b1b1c6b3a?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="compact"/>
+          <div>
+            <strong>Compact hatchback</strong>
+            <p class="muted" style="color:var(--muted);margin:.25rem 0 0">Cheap to run, great in city</p>
+          </div>
+        </div>
+        <div style="margin-top:.75rem">
+          <a class="btn" href="#" onclick="alert('This is a demo page — links are placeholders')">Learn more</a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1rem">
+        <h2>Quick calculator</h2>
+        <p style="color:var(--muted);margin-top:0">Estimate monthly fuel cost</p>
+        <label>Distance per month (km)</label>
+        <input id="km" type="number" value="800" style="width:100%;padding:.45rem;margin-top:.25rem;border-radius:8px;border:none;background:#071827;color:inherit"/>
+        <label style="margin-top:.5rem;display:block">Fuel consumption (L/100km)</label>
+        <input id="cons" type="number" value="7.5" step="0.1" style="width:100%;padding:.45rem;margin-top:.25rem;border-radius:8px;border:none;background:#071827;color:inherit"/>
+        <label style="margin-top:.5rem;display:block">Fuel price per L</label>
+        <input id="price" type="number" value="1.3" step="0.01" style="width:100%;padding:.45rem;margin-top:.25rem;border-radius:8px;border:none;background:#071827;color:inherit"/>
+        <div style="margin-top:.75rem;text-align:right">
+          <button class="btn" onclick="calcFuel()">Calculate</button>
+        </div>
+        <p id="fuelResult" style="margin-top:.5rem;color:var(--muted)"></p>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Built for learning — modify freely. Images come from Unsplash (placeholder URLs) and are for demo only.</small>
+  </footer>
+
+  <script>
+    function doSearch(){
+      const q = document.getElementById('q').value.toLowerCase();
+      if(!q) return alert('Type something to search.');
+      // simple demo search that scrolls to sections
+      if(q.includes('history')||q.includes('milestone')) location.href = '#';
+      else if(q.includes('gallery')||q.includes('photo')) document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+      else if(q.includes('ev')||q.includes('electric')) alert('This mini-site: EVs are covered under "Common car categories".');
+      else alert('No direct match in this demo. Try keywords: EV, engine, gallery, tips.');
+    }
+
+    function calcFuel(){
+      const km = parseFloat(document.getElementById('km').value) || 0;
+      const cons = parseFloat(document.getElementById('cons').value) || 0;
+      const price = parseFloat(document.getElementById('price').value) || 0;
+      const liters = (km * cons) / 100;
+      const cost = liters * price;
+      document.getElementById('fuelResult').textContent = `Estimated monthly fuel cost: ${cost.toLocaleString(undefined,{style:'currency',currency:'USD',minimumFractionDigits:2})} (≈ ${liters.toFixed(1)} L)`;
+    }
+
+    // small visual demo: randomly swap gallery images every 6s
+    (function galleryShuffle(){
+      const g = document.getElementById('gallery');
+      if(!g) return;
+      setInterval(()=>{
+        const imgs = Array.from(g.querySelectorAll('img'));
+        const i = Math.floor(Math.random()*imgs.length);
+        const j = Math.floor(Math.random()*imgs.length);
+        if(i===j) return;
+        const tmp = imgs[i].src;
+        imgs[i].src = imgs[j].src;
+        imgs[j].src = tmp;
+      },6000);
+    })();
+  </script>
+</body>
+</html>
